@@ -1,4 +1,6 @@
 from rest_framework import filters
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from logistic.models import Product, Stock
@@ -16,3 +18,8 @@ class StockViewSet(ModelViewSet):
     queryset = Stock.objects.all()
     serializer_class = StockSerializer
     filterset_fields = ['products']
+
+
+@api_view(['GET'])
+def Sample_view(request):
+    return Response('Привет мир')

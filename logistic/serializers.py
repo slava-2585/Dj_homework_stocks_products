@@ -17,7 +17,6 @@ class ProductPositionSerializer(serializers.ModelSerializer):
         fields = ['price', 'product', 'quantity']
 
 
-
 class StockSerializer(serializers.ModelSerializer):
     positions = ProductPositionSerializer(many=True)
 
@@ -29,8 +28,9 @@ class StockSerializer(serializers.ModelSerializer):
         positions = validated_data.pop('positions')
         stock = super().create(validated_data)
         for position in positions:
-            #StockProduct(stock=stock, price=position['price'], product=position['product'], quantity=position['quantity']).save()
-            StockProduct.objects.create(stock=stock, **position)
+            StockProduct.objects.create(
+                stock=stock, **position
+            )
         return stock
 
     def update(self, instance, validated_data):
@@ -40,8 +40,12 @@ class StockSerializer(serializers.ModelSerializer):
         # обновляем склад по его параметрам
         stock = super().update(instance, validated_data)
         for position in positions:
-            StockProduct.objects.update_or_create(stock=stock, product=position['product'], defaults={
-                'price': position['price'],
-                'quantity': position['quantity']
-            })
+            StockProduct.objects.update_or_create(
+                stock=stock,
+                product=position['product'],
+                defaults={
+                    'price': position['price'],
+                    'quantity': position['quantity']
+                }
+            )
         return stock
