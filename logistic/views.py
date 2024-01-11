@@ -19,7 +19,3 @@ class StockViewSet(ModelViewSet):
     serializer_class = StockSerializer
     filterset_fields = ['products']
 
-
-@api_view(['GET'])
-def Sample_view(request):
-    return Response('Привет мир')
