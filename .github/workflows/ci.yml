@@ -20,7 +20,7 @@ jobs:
     services:
       postgres-db:
         image: postgres:12
-        evn:
+        env:
           POSTGRES_DB: ${{ env.DB_NAME }}
           POSTGRES_USER: ${{ env.DB_USER }}
           POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
