@@ -33,10 +33,10 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      #- name: Проверка наличия изменения
-        #uses: action/checkout@v4
-        #with:
-          #repository: 'slava-2585/Dj_homework_stocks_products'
+      - name: Проверка наличия изменения
+        uses: action/checkout@v4
+        with:
+          repository: 'slava-2585/Dj_homework_stocks_products'
 
       - name: Установка python и создания окружения
         uses: action/setup-python@v3
