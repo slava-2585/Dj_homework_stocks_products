@@ -37,6 +37,8 @@ jobs:
         uses: action/checkout@v4
         with:
           repository: 'slava-2585/Dj_homework_stocks_products'
+          ssh-strict: true
+          ssh-key: ${{ secrets.TOKEN }}
 
       - name: Установка python и создания окружения
         uses: action/setup-python@v3
